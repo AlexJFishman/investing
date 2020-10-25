@@ -4,5 +4,19 @@
  https://www.sqlite.org/download.html
 
  ## run app
- Nodejs: Main directory run ### `npm install`, ### `npm run`.
- in another tab go to client directory ( cd client ),    run ### `npm install`, ### `npm run`.
+ Nodejs: Main directory run  
+ ```bash
+ npm instal
+ l```
+ , 
+ ```bash
+ npm install
+ ``
+ in another tab go to client directory ( cd client ),    run 
+ ```bash 
+ npm install
+ `` 
+ , 
+ ```bash
+ npm install
+ ``
