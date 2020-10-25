@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import _ from "lodash";
 import { useStores } from "../stores/helpers/use-stores";
-import InstrumentServices from '../services/instrument-services';
+import InstrumentServices from "../services/instrument-services";
 import { observer } from "mobx-react-lite";
 
 const Search = () => {
@@ -10,15 +10,16 @@ const Search = () => {
   } = useStores();
   const onSearchChange = (value: string) => {
     if (value.length === 0) {
-        instrumentsStore.clearList();
-        InstrumentServices.getInstruments(instrumentsStore);
+      instrumentsStore.clearList();
+      InstrumentServices.getInstruments(instrumentsStore);
     } else {
-        instrumentsStore.clearList();
+      instrumentsStore.clearList();
       InstrumentServices.getInstrumentsByFilter(instrumentsStore, value);
     }
-}
-    
+  };
+
   const debouncedSearch = _.debounce(onSearchChange, 300);
+
   return (
     <div>
       <input

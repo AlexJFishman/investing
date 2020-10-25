@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { observer } from "mobx-react-lite";
 
@@ -11,7 +11,6 @@ const LoginComponent = () => {
     dataStores: { usersStore, userInstrumentsStore }
   } = useStores();
   const login = () => {
-    // call service that logins ( create or uses a user)
     if (typedName) {
       userServices.login(typedName, usersStore, userInstrumentsStore);
     } else {
@@ -25,7 +24,7 @@ const LoginComponent = () => {
     } else {
       setNameValidation(true);
     }
-  }
+  };
   return (
     <div>
       Please enter your name to login:

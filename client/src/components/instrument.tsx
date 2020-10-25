@@ -19,7 +19,7 @@ const InstrumentComponent: FunctionComponent<Props> = observer(
     const itemClick = () => {
       if (listType === "db") {
         if (usersStore.isLoggedIn && usersStore.connectedUser) {
-          if(!userInstrumentsStore.instrumentsList.includes(instrument)){
+          if (!userInstrumentsStore.instrumentsList.includes(instrument)) {
             UserService.addInstrument(
               instrument,
               usersStore.connectedUser.id,

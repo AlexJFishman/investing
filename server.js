@@ -1,6 +1,5 @@
 // Create express app
 const express = require("express");
-const db = require("./database.js");
 const app = express();
 const errorhandler = require("errorhandler");
 
