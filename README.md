@@ -4,19 +4,7 @@
  https://www.sqlite.org/download.html
 
  ## run app
- Nodejs: Main directory run  
- ```bash
- npm instal
- l```
- , 
- ```bash
- npm install
- ``
- in another tab go to client directory ( cd client ),    run 
- ```bash 
- npm install
- `` 
- , 
- ```bash
- npm install
- ``
+ BackEnd: main directory run `npm install` `npm start`
+ frontEnd: open another tab, change to client directory ( cd client) main->client
+ run `npm install` `npm start`
+
