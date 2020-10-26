@@ -31,13 +31,13 @@ export default {
         // fetch relevant instruments
 
         // SHOULD TO JOIN TO FETCH INSTRUMETS
-        const sql = "select * from list where userId = ?";
-        const params = [row.id];
-        db.all(sql, params, (err, rows) => {
+        const sql = `select * from list LEFT JOIN instrument ON list.instrumentId = instrument.id where list.userId = ${row.id}`;
+        db.all(sql, [], (err, rows) => {
           if (err) {
             reject({ error: err.message });
             return;
           }
+          console.log(rows);
           resolve({
             message: "success",
             data: { user: row, list: rows }

@@ -20,12 +20,17 @@ export default class UserInstrumentsStore {
     }
 
     @action
-    addInstrumentsById(ids: number[]){
-        const filteredInts = _.filter(this.rootStore.dataStores.instrumentsStore.instrumentsList, (inst: Instrument) => {
-            return ids.includes(inst.instrumentId);
-        });
-        _.forEach(filteredInts, (instrument) => {
-            this.addInstrument(instrument);
+    addInstruments(instruments: [] = []){
+        _.forEach(instruments, (inst) => {
+            const { id, name, symbol, instrumentType } = inst;
+            const _instrument = new Instrument(
+              id,
+              name,
+              symbol,
+              instrumentType,
+              this.rootStore
+            );
+            this.addInstrument(_instrument);
         });
     }
     

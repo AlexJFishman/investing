@@ -6,18 +6,17 @@ import InstrumentsListComponent from "./components/instrument-list/instruments-l
 import Instrument from "./stores/data/instruments/instrument";
 import LoginComponent from "./components/login/login";
 import { observer } from "mobx-react-lite";
-import UserService from './services/user-services';
-import InstrumentServices from './services/instrument-services';
+import UserService from "./services/user-services";
+import InstrumentServices from "./services/instrument-services";
 const App = () => {
   const {
     dataStores: { userInstrumentsStore, usersStore, instrumentsStore }
   } = useStores();
-  const dbInstruments: Instrument[] = [];
 
   useEffect(() => {
     // get list from db
     InstrumentServices.getInstruments(instrumentsStore);
-  }, [])
+  }, []);
 
   return (
     <div className="main-container">

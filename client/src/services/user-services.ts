@@ -64,9 +64,7 @@ export default {
           }
           const { user, list } = result.data;
           usersStore.login(user.id, user.name);
-          // add user instruments if there are any
-          const onlyInstrumentsIds = _.map(list, item => item.instrumentId);
-          userInstrumentsStore.addInstrumentsById(onlyInstrumentsIds);
+          userInstrumentsStore.addInstruments(list);
         },
         error => {
           // some kind of client error modal
