@@ -26,7 +26,10 @@ const InstrumentComponent: FunctionComponent<Props> = observer(
     const itemClick = () => {
       if (listType === Types.db) {
         if (usersStore.connectedUser) {
-          if (!userInstrumentsStore.instruments.includes(instrument)) {
+          const usedInstrument = _.find(userInstrumentsStore.instruments, (inst: Instrument) =>{
+            return inst.instrumentId === instrument.instrumentId;
+          });
+          if (!usedInstrument) {
             UserService.addInstrument(
               instrument,
               usersStore.connectedUser.id,
