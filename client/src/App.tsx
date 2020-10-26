@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { useStores } from "./stores/helpers/use-stores";
-import Search from "./components/search";
-import InstrumentsListComponent from "./components/instruments-list";
+import Search from "./components/search/search";
+import InstrumentsListComponent from "./components/instrument-list/instruments-list";
 import Instrument from "./stores/data/instruments/instrument";
-import LoginComponent from "./components/login";
+import LoginComponent from "./components/login/login";
 import { observer } from "mobx-react-lite";
 import UserService from './services/user-services';
 import InstrumentServices from './services/instrument-services';
@@ -25,13 +25,13 @@ const App = () => {
         <Search></Search>
         <InstrumentsListComponent
           listType="db"
-          instruments={instrumentsStore.instrumentsList}
+          instruments={instrumentsStore.instruments}
         ></InstrumentsListComponent>
       </div>
       <div className="bottom-view">
         {usersStore.isLoggedIn ? (
           <InstrumentsListComponent
-            instruments={userInstrumentsStore.getInstruments()}
+            instruments={userInstrumentsStore.instruments}
             listType="user"
           ></InstrumentsListComponent>
         ) : (

@@ -1,4 +1,4 @@
-import {action, observable, makeObservable} from "mobx";
+import {action, observable, makeObservable, computed} from "mobx";
 import RootStore from "../../root-store";
 import Instrument from "./instrument";
 import _ from 'lodash';
@@ -28,8 +28,9 @@ export default class UserInstrumentsStore {
             this.addInstrument(instrument);
         });
     }
-
-    getInstruments() {
+    
+    @computed
+    get instruments() {
         return this.instrumentsList;
     }
 

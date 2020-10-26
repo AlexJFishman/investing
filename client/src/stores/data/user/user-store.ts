@@ -15,12 +15,19 @@ export default class UsersStore {
   }
 
   getUserInstruments() {
-    return this.rootStore.dataStores.userInstrumentsStore.getInstruments();
+    return this.rootStore.dataStores.userInstrumentsStore.instruments;
   }
 
   @computed
   get isLoggedIn() {
     return Boolean(this.connectedUser);
+  }
+
+  @computed
+  get user(){
+    if(this.connectedUser){
+      return this.connectedUser;
+    }
   }
 
   @action

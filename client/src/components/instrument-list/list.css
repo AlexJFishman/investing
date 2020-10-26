@@ -1,0 +1,49 @@
+.inst-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  padding-top: 30px;
+  border: 0.5px solid #9b9b9b2e;
+  border-radius: 5px;
+  position: relative;
+}
+
+.inst-list .list-header {
+  color: #9b9b9b;
+  font-size: 15px;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}
+
+.inst-item {
+  border-radius: 5px;
+  width: 15%;
+  background-color: #0AE596;
+  margin: 3px;
+  padding: 20px;
+  height: 120px;
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inst-item.user {
+  background-color: #418AF2
+}
+
+.inst-item .inst-name {
+  font-size: 20px
+}
+
+.inst-item .inst-type, .inst-item .inst-symbol {
+  position: absolute;
+  bottom: 15px;
+  font-size: 15px;
+  right: 15px;
+}
+
+.inst-item .inst-symbol {
+  color: #ffffff;
+  left: 15px;
+}

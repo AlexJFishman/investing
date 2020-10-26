@@ -19,7 +19,7 @@ export default class User {
 
     @computed
     get instruments() {
-        return this.rootStore.dataStores.userInstrumentsStore.getInstruments()
+        return this.rootStore.dataStores.userInstrumentsStore.instruments
     }
 
 }

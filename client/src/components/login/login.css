@@ -1,0 +1,15 @@
+/* login */
+
+.login-container {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 200px;
+  }
+  
+  .login-text, .login-validation {
+    color: #9b9b9b;
+  }
+  
+  .login-validation {
+    font-size: 14px;
+  }
