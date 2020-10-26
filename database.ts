@@ -2,9 +2,9 @@
     on running the server it will try creating user, instruments, lists tables if they dont exist.
     It will populate the instruments table incase it was created.
     Not ideal Database but should serve for this project */
-const mockData = require("./instrumentsMockData.js");
-const _ = require("lodash");
-const sqlite3 = require("sqlite3").verbose();
+import mockData from './instrumentsMockData';
+import _ from 'lodash';
+import sqlite3 from 'sqlite3';
 // verbose for extra info in debbuging
 
 const DBSOURCE = "db.sqlite";
@@ -76,4 +76,4 @@ let db = new sqlite3.Database(DBSOURCE, err => {
   }
 });
 
-module.exports = db;
+export = db;

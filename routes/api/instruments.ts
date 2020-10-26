@@ -1,10 +1,10 @@
-const router = require("express").Router();
-const db = require("../../database.js");
+import db from '../../database';
+import { Router, Request, Response } from 'express';
+const router: Router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", (req: Request, res: Response) => {
   const sql = "select * from instrument LIMIT 5";
-  const params = [];
-  db.all(sql, params, (err, rows) => {
+  db.all(sql, [], (err, rows) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;
@@ -16,11 +16,10 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/search/:filter", (req, res) => {
+router.get("/search/:filter", (req: Request, res: Response) => {
     const filter = req.params.filter;
     const sql = `select * from instrument where name like '%${filter}%' or symbol like '%${filter}%' LIMIT 5`;
-    const params = [];
-    db.all(sql, params, (err, rows) => {
+    db.all(sql, [], (err, rows) => {
       if (err) {
         res.status(400).json({ error: err.message });
         return;
@@ -32,7 +31,7 @@ router.get("/search/:filter", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req: Request, res: Response) => {
   const sql = "select * from instrument where id = ?";
   const params = [req.params.id];
   db.get(sql, params, (err, row) => {
@@ -51,4 +50,4 @@ router.get("/:id", (req, res) => {
   });
 });
 
-module.exports = router;
+export = router;

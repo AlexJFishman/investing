@@ -16,4 +16,4 @@ const mockData = [
     {"instrumentId":1525,"name":"Canadian Dollar Euro","symbol":"CAD/EUR","instrumentType":"currency"}
 ];
 
-module.exports = mockData;
+export= mockData;

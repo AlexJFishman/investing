@@ -1,10 +1,12 @@
-const router = require("express").Router();
-const db = require("../../database.js");
+import db from '../../database';
 
-router.get("/", (req, res) => {
+import { Router, Request, Response } from 'express';
+const router: Router = Router();
+
+
+router.get("/", (req: Request, res: Response) => {
   const sql = "select * from user";
-  const params = [];
-  db.all(sql, params, (err, rows) => {
+  db.all(sql, [], (err, rows) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;
@@ -16,7 +18,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/:name", (req, res) => {
+router.get("/:name", (req: Request, res: Response) => {
   const sql = "select * from user where name = ?";
   const params = [req.params.name];
   db.get(sql, params, (err, row) => {
@@ -45,10 +47,10 @@ router.get("/:name", (req, res) => {
   });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", (req: Request, res: Response, next) => {
   const sql = "INSERT INTO user (id, name) VALUES (?, ?)";
   const params = [req.body.id, req.body.name];
-  db.run(sql, params, function(err, result) {
+  db.run(sql, params, (err) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;
@@ -72,4 +74,4 @@ router.post("/", (req, res, next) => {
   });
 });
 
-module.exports = router;
+export = router;
