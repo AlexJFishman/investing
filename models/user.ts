@@ -38,7 +38,6 @@ export default {
             reject({ error: err.message });
             return;
           }
-          console.log(row);
           resolve({
             message: "success",
             data: { user: row, list: rows }
