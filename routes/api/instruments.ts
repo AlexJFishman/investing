@@ -1,53 +1,37 @@
 import db from '../../database';
 import { Router, Request, Response } from 'express';
+import instrumentModel from '../../models/instrument';
 const router: Router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-  const sql = "select * from instrument LIMIT 5";
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: rows
-    });
-  });
+router.get("/", async (req: Request, res: Response) => {
+  let result;
+  try {
+    result = await instrumentModel.getInstruments();
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  return res.json(result);
 });
 
-router.get("/search/:filter", (req: Request, res: Response) => {
-    const filter = req.params.filter;
-    const sql = `select * from instrument where name like '%${filter}%' or symbol like '%${filter}%' LIMIT 5`;
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-        return;
-      }
-      res.json({
-        message: "success",
-        data: rows
-      });
-    });
+router.get("/search/:filter", async (req: Request, res: Response) => {
+  let result;
+  try {
+    result = await instrumentModel.getFilteredInstruments(req.params.filter);
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  return res.json(result);
+
 });
 
-router.get("/:id", (req: Request, res: Response) => {
-  const sql = "select * from instrument where id = ?";
-  const params = [req.params.id];
-  db.get(sql, params, (err, row) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    if (!row) {
-      res.status(404).json({ error: "instrument not found" });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: row
-    });
-  });
+router.get("/:id", async (req: Request, res: Response) => {
+  let result;
+  try {
+    result = await instrumentModel.getById(req.params.id);
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  return res.json(result);
 });
 
 export = router;

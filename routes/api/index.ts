@@ -1,6 +1,6 @@
-import express from 'express';
+import { Router } from 'express';
+const router: Router = Router();
 
-const router = express.Router();
 router.use("/users", require("./users"));
 router.use("/instruments", require("./instruments"));
 router.use("/lists", require("./lists"));

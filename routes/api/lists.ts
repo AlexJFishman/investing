@@ -1,64 +1,42 @@
-import db from '../../database';
-
-import { Router, Request, Response } from 'express';
+import db from "../../database";
+import listModel from "../../models/list";
+import { Router, Request, Response } from "express";
 const router: Router = Router();
 
-
-router.get("/", (req: Request, res: Response) => {
-  const sql = "select * from list";
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: rows
-    });
-  });
+router.get("/:userId", async (req: Request, res: Response) => {
+  let result;
+  try {
+    result = await listModel.getListByUserId(req.params.userId);
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  res.json(result);
 });
 
-router.get("/:userId", (req: Request, res: Response) => {
-  const sql = "select * from list WHERE userId = ?";
-  const params = [req.params.userId];
-  db.all(sql, params, (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: rows
-    });
-  });
+router.delete("/", async (req: Request, res: Response, next) => {
+  let result;
+  try {
+    result = await listModel.deleteItemFromList(
+      req.body.userId,
+      req.body.instrumentId
+    );
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  return res.json(result);
 });
 
-router.delete("/", (req: Request, res: Response, next) => {
-    const sql = "DELETE FROM list WHERE userId = ? AND instrumentId = ?";
-    const params = [req.body.userId, req.body.instrumentId];
-    db.run(sql, params, (err) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-        return;
-      }
-      res.json({
-        message: "success"
-      });
-    });
-  });
-
-router.post("/", (req: Request, res: Response, next) => {
-    const sql = "INSERT INTO list (userId, instrumentId) VALUES (?, ?)";
-    const params = [req.body.userId, req.body.instrumentId];
-    db.run(sql, params, (err) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-        return;
-      }
-      res.json({
-        message: "success"
-      });
-    });
-  });
+router.post("/", async (req: Request, res: Response, next) => {
+  let result;
+  try {
+    result = await listModel.addItemToList(
+      req.body.userId,
+      req.body.instrumentId
+    );
+  } catch (err) {
+    res.status(err.status || 500).json(err.error);
+  }
+  return res.json(result);
+});
 
 export = router;
