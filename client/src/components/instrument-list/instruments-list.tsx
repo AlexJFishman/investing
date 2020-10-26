@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import _ from "lodash";
 import { observer } from "mobx-react-lite";
 import Instrument from "../../stores/data/instruments/instrument";
 import InstrumentComponent from "../instrument/instrument";

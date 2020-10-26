@@ -1,6 +1,7 @@
 import { Router } from "express";
+import apiRouter from "./api";
 const router: Router = Router();
 
-router.use("/api", require("./api"));
+router.use("/api", apiRouter);
 
 export = router;

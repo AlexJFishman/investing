@@ -22,29 +22,30 @@ const InstrumentComponent: FunctionComponent<Props> = observer(
       dataStores: { userInstrumentsStore, usersStore }
     } = useStores();
 
-
     const itemClick = () => {
+      if (!usersStore.connectedUser) {
+        return;
+      }
       if (listType === Types.db) {
-        if (usersStore.connectedUser) {
-          const usedInstrument = _.find(userInstrumentsStore.instruments, (inst: Instrument) =>{
+        const usedInstrument = _.find(
+          userInstrumentsStore.instruments,
+          (inst: Instrument) => {
             return inst.instrumentId === instrument.instrumentId;
-          });
-          if (!usedInstrument) {
-            UserService.addInstrument(
-              instrument,
-              usersStore.connectedUser.id,
-              userInstrumentsStore
-            );
           }
-        }
-      } else {
-        if (usersStore.connectedUser) {
-          UserService.removeInstrument(
-            instrument.instrumentId,
+        );
+        if (!usedInstrument) {
+          UserService.addInstrument(
+            instrument,
             usersStore.connectedUser.id,
             userInstrumentsStore
           );
         }
+      } else {
+        UserService.removeInstrument(
+          instrument.instrumentId,
+          usersStore.connectedUser.id,
+          userInstrumentsStore
+        );
       }
     };
 

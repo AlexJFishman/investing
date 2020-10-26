@@ -1,4 +1,4 @@
-import { computed, observable, makeObservable } from "mobx";
+import { observable, makeObservable } from "mobx";
 import RootStore from "../../root-store";
 
 export default class Instrument {

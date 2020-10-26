@@ -1,7 +1,6 @@
 import UserInstrumentsStore from "../stores/data/instruments/userInstruments-store";
 import Instrument from "../stores/data/instruments/instrument";
 import UsersStore from "../stores/data/user/user-store";
-import _ from "lodash";
 
 export default {
   async addInstrument(

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import _ from "lodash";
 import { observer } from "mobx-react-lite";
 import "./login.css";
 

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 import errorhandler from "errorhandler";
 import bodyParser from "body-parser";
-
+import routes from './routes';
 const app = express();
 const isProd = process.env.NODE_ENV === "production";
 // user bodyParaser to expose body on req.body
@@ -31,7 +31,7 @@ if (!isProd) {
   app.use(errorhandler());
 }
 // fetch routes
-app.use(require("./routes"));
+app.use(routes);
 
 // catch 404 errors and forward to error handler
 app.use((req, res, next) => {
