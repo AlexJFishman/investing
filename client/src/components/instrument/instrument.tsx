@@ -12,8 +12,8 @@ interface Props {
 }
 
 enum Types {
-  db = "db",
-  user = "user"
+  DB = "db",
+  USER = "user"
 }
 
 const InstrumentComponent: FunctionComponent<Props> = observer(
@@ -26,7 +26,7 @@ const InstrumentComponent: FunctionComponent<Props> = observer(
       if (!usersStore.connectedUser) {
         return;
       }
-      if (listType === Types.db) {
+      if (listType === Types.DB) {
         const usedInstrument = _.find(
           userInstrumentsStore.instruments,
           (inst: Instrument) => {
